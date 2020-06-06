@@ -250,7 +250,7 @@ void CheckForWinner(HWND hwnd)
            GameArea[1][0] == i && GameArea[1][1] == i && GameArea[1][2] == i ||
            GameArea[2][0] == i && GameArea[2][1] == i && GameArea[2][2] == i ||
            GameArea[0][0] == i && GameArea[1][1] == i && GameArea[2][2] == i ||
-           GameArea[0][2] == i && GameArea[1][0] == i && GameArea[0][2] == i ||
+           GameArea[0][2] == i && GameArea[1][1] == i && GameArea[2][0] == i ||
            GameArea[0][0] == i && GameArea[1][0] == i && GameArea[2][0] == i ||
            GameArea[0][1] == i && GameArea[1][1] == i && GameArea[2][1] == i ||
            GameArea[0][2] == i && GameArea[1][2] == i && GameArea[2][2] == i){
@@ -292,6 +292,7 @@ void ClearGameArea()
             SendMessageW(BtnHwnd[i][a],BM_SETIMAGE,NULL,NULL);
         }
     }
+    WhoPlays ? SetStatusBarText("X player's turn.") : SetStatusBarText("O player's turn.");
 }
 
 LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
