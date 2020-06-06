@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1591467488 source:c:\users\veselcraft\documents\cb\tictactoeveselcraft\main.cpp
+	<tchar.h>
+	<windows.h>
+	<cstdio>
+	<commctrl.h>
+	"resources.h"
+
+1591467569 source:c:\users\veselcraft\documents\cb\tictactoeveselcraft\resources.rc
+	"resources.h"
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+
+1591467183 c:\users\veselcraft\documents\cb\tictactoeveselcraft\resources.h
+
