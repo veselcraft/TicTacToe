@@ -204,16 +204,16 @@ BOOL CALLBACK DlgMain(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 void CreateControls(HWND hwnd)
 {
-    BtnHwnd[0][0] = CreateWindowExW(NULL,L"button",L"",WS_VISIBLE | WS_CHILD | BS_BITMAP,20             ,20             ,50,50,hwnd,(HMENU)ID_11,hInstance,NULL);
-    BtnHwnd[0][1] = CreateWindowExW(NULL,L"button",L"",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10       ,20             ,50,50,hwnd,(HMENU)ID_12,hInstance,NULL);
-    BtnHwnd[0][2] = CreateWindowExW(NULL,L"button",L"",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10+50+10 ,20             ,50,50,hwnd,(HMENU)ID_13,hInstance,NULL);
-    BtnHwnd[1][0] = CreateWindowExW(NULL,L"button",L"",WS_VISIBLE | WS_CHILD | BS_BITMAP,20             ,20+50+10       ,50,50,hwnd,(HMENU)ID_21,hInstance,NULL);
-    BtnHwnd[1][1] = CreateWindowExW(NULL,L"button",L"",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10       ,20+50+10       ,50,50,hwnd,(HMENU)ID_22,hInstance,NULL);
-    BtnHwnd[1][2] = CreateWindowExW(NULL,L"button",L"",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10+50+10 ,20+50+10       ,50,50,hwnd,(HMENU)ID_23,hInstance,NULL);
-    BtnHwnd[2][0] = CreateWindowExW(NULL,L"button",L"",WS_VISIBLE | WS_CHILD | BS_BITMAP,20             ,20+50+10+50+10 ,50,50,hwnd,(HMENU)ID_31,hInstance,NULL);
-    BtnHwnd[2][1] = CreateWindowExW(NULL,L"button",L"",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10       ,20+50+10+50+10 ,50,50,hwnd,(HMENU)ID_32,hInstance,NULL);
-    BtnHwnd[2][2] = CreateWindowExW(NULL,L"button",L"",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10+50+10 ,20+50+10+50+10 ,50,50,hwnd,(HMENU)ID_33,hInstance,NULL);
-    StatusBarHwnd = CreateWindowExW(NULL,L"static",L"X player's turn.",WS_VISIBLE | WS_CHILD,20 ,20+50+10+50+10+50+10,150,20,hwnd,(HMENU)ID_STATUSBAR,hInstance,NULL);
+    BtnHwnd[0][0] = CreateWindowEx(NULL,"button","",WS_VISIBLE | WS_CHILD | BS_BITMAP,20             ,20             ,50,50,hwnd,(HMENU)ID_11,hInstance,NULL);
+    BtnHwnd[0][1] = CreateWindowEx(NULL,"button","",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10       ,20             ,50,50,hwnd,(HMENU)ID_12,hInstance,NULL);
+    BtnHwnd[0][2] = CreateWindowEx(NULL,"button","",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10+50+10 ,20             ,50,50,hwnd,(HMENU)ID_13,hInstance,NULL);
+    BtnHwnd[1][0] = CreateWindowEx(NULL,"button","",WS_VISIBLE | WS_CHILD | BS_BITMAP,20             ,20+50+10       ,50,50,hwnd,(HMENU)ID_21,hInstance,NULL);
+    BtnHwnd[1][1] = CreateWindowEx(NULL,"button","",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10       ,20+50+10       ,50,50,hwnd,(HMENU)ID_22,hInstance,NULL);
+    BtnHwnd[1][2] = CreateWindowEx(NULL,"button","",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10+50+10 ,20+50+10       ,50,50,hwnd,(HMENU)ID_23,hInstance,NULL);
+    BtnHwnd[2][0] = CreateWindowEx(NULL,"button","",WS_VISIBLE | WS_CHILD | BS_BITMAP,20             ,20+50+10+50+10 ,50,50,hwnd,(HMENU)ID_31,hInstance,NULL);
+    BtnHwnd[2][1] = CreateWindowEx(NULL,"button","",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10       ,20+50+10+50+10 ,50,50,hwnd,(HMENU)ID_32,hInstance,NULL);
+    BtnHwnd[2][2] = CreateWindowEx(NULL,"button","",WS_VISIBLE | WS_CHILD | BS_BITMAP,20+50+10+50+10 ,20+50+10+50+10 ,50,50,hwnd,(HMENU)ID_33,hInstance,NULL);
+    StatusBarHwnd = CreateWindowEx(NULL,"static","X player's turn.",WS_VISIBLE | WS_CHILD,20 ,20+50+10+50+10+50+10,150,20,hwnd,(HMENU)ID_STATUSBAR,hInstance,NULL);
 }
 
 void SetStatusBarText(LPCSTR text)
@@ -271,11 +271,11 @@ void SetMark(HWND hwnd, int y, int x){
     if(GameArea[y][x] == 0 && GameEnded == false){
         if(WhoPlays){
             GameArea[y][x] = 1;
-            SendMessageW(BtnHwnd[y][x],BM_SETIMAGE,IMAGE_BITMAP,(LPARAM)xImage);
+            SendMessage(BtnHwnd[y][x],BM_SETIMAGE,IMAGE_BITMAP,(LPARAM)xImage);
             SetStatusBarText("O player's turn.");
         }else{
             GameArea[y][x] = 2;
-            SendMessageW(BtnHwnd[y][x],BM_SETIMAGE,IMAGE_BITMAP,(LPARAM)oImage);
+            SendMessage(BtnHwnd[y][x],BM_SETIMAGE,IMAGE_BITMAP,(LPARAM)oImage);
             SetStatusBarText("X player's turn.");
         }
         WhoPlays ? WhoPlays = false : WhoPlays = true;
@@ -289,7 +289,7 @@ void ClearGameArea()
     GameEnded = false;
     for(int i = 0; i <= 2; i++){
         for(int a = 0; a <= 2; a++){
-            SendMessageW(BtnHwnd[i][a],BM_SETIMAGE,NULL,NULL);
+            SendMessage(BtnHwnd[i][a],BM_SETIMAGE,NULL,NULL);
         }
     }
     WhoPlays ? SetStatusBarText("X player's turn.") : SetStatusBarText("O player's turn.");
@@ -316,7 +316,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                     ClearGameArea();
                     break;
                 case ID_ABOUT:
-                    DialogBox(hInstance, MAKEINTRESOURCE(DLG_ABOUT), NULL, (DLGPROC)DlgMain);
+                    DialogBox(hInstance, MAKEINTRESOURCE(DLG_ABOUT), hwnd, (DLGPROC)DlgMain);
                     break;
                 case ID_11:
                     SetMark(hwnd, 0, 0);
