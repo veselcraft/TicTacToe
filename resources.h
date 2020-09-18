@@ -15,11 +15,20 @@
 #define ID_NEW 10
 #define ID_EXIT 11
 #define ID_ABOUT 12
+#define ID_STARTSERVER 13
+#define ID_CONNECT 14
+#define ID_HELP 15
 
-#define ID_STATUSBAR 12
+#define ID_STATUSBAR 50
 
 #define IDB_XICON 101
 #define IDB_OICON 102
 
 #define DLG_ABOUT 200
+#define DLG_CONNECT 201
 
+#define DLG_ID_TEXTBOX 300
+
+//network
+
+#define PORT 190
